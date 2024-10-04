@@ -2,9 +2,9 @@
   <button (click)="addHeroes()">Chargement des héros !</button>
 </div>
 <div class="flex flex-wrap gap-2">
-  <a *ngFor="let hero of heroes">
+  <a *ngFor="let hero of heroes" [routerLink]="['/hero-detail', hero.id]">
     <p>{{hero.name}}</p>
-    <img [src]="hero.image" alt="{{ hero.name }}">
+    <img [src]="hero.images.sm" alt="{{ hero.name }}">
   </a>
 
   <!--  @for (hero of heroes; track $index) {-->

@@ -1,28 +1,33 @@
 import { Component } from '@angular/core';
 import {JsonPipe, NgForOf} from "@angular/common";
+import {Hero} from "../../models/hero";
+import {RouterLink} from "@angular/router";
+import {HeroApiService} from "../../services/hero-api.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @Component({
   selector: 'app-all-heroes',
   standalone: true,
   imports: [
     JsonPipe,
-    NgForOf
+    NgForOf,
+    RouterLink,
+    HttpClientModule
   ],
+  providers : [HeroApiService],
   templateUrl: './all-heroes.component.html',
   styleUrl: './all-heroes.component.css'
 })
 export class AllHeroesComponent {
 
-  public heroes : Array<any> //any[]
+  public heroes : Array<Hero> //any[]
 
-  constructor() {
+  constructor(private heroService : HeroApiService) {
     this.heroes = []
   }
 
   public addHeroes(){
-    this.heroes.push({name : "Hulk", image : "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/332-hulk.jpg"});
-    this.heroes.push({name : "Batman", image : "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/70-batman.jpg"});
-    this.heroes.push({name : "Oui-oui", image : "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/195-cyborg-superman.jpg"});
+   this.heroService.getAllHeroes().subscribe((data : Hero[]) => this.heroes = data)
   }
 
 }
