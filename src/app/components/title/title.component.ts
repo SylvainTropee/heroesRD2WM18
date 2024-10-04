@@ -9,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class TitleComponent {
 
+  public title : string;
+
+  constructor() {
+    this.title = "Heroes !"
+  }
+
+
 }

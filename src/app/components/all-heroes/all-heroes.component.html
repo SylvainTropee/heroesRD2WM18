@@ -1,1 +1,15 @@
-<p>all-heroes works!</p>
+<div>
+  <button (click)="addHeroes()">Chargement des héros !</button>
+</div>
+<div class="flex flex-wrap gap-2">
+  <a *ngFor="let hero of heroes">
+    <p>{{hero.name}}</p>
+    <img [src]="hero.image" alt="{{ hero.name }}">
+  </a>
+
+  <!--  @for (hero of heroes; track $index) {-->
+  <!--    <a>-->
+  <!--      <div>{{ hero.name }}</div>-->
+  <!--    </a>-->
+  <!--  }-->
+</div>
